@@ -14,7 +14,7 @@
       <chart>
         <title>Sensor Events per Hour</title>
         <search>
-          <query>source="*mhn-splunk.log*" (type=snort.alerts OR type=suricata.alerts) | timechart span=1h count</query>
+          <query>source="*mhn-splunk.log*" (type=snort.alerts OR type=suricata.events) | timechart span=1h count</query>
           <earliest>$time_range.earliest$</earliest>
           <latest>$time_range.latest$</latest>
         </search>
@@ -47,7 +47,7 @@
       <table>
         <title>Top Sources</title>
         <search>
-          <query>source="*mhn-splunk.log*" (type=snort.alerts OR type=suricata.alerts) | top src | iplocation src | fields src, Country, count | fillnull value=Unknown Country | eval DShield="DShield"</query>
+          <query>source="*mhn-splunk.log*" (type=snort.alerts OR type=suricata.events) | top src | iplocation src | fields src, Country, count | fillnull value=Unknown Country | eval DShield="DShield"</query>
           <earliest>$time_range.earliest$</earliest>
           <latest>$time_range.latest$</latest>
         </search>
